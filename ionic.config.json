@@ -1,0 +1,7 @@
+{
+  "name": "click-and-boat",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
