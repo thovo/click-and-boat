@@ -1,0 +1,14 @@
+<div class="homepage">
+	<div class="search-box">
+		<input
+			type="text"
+			[(ngModel)]="searchText"
+			(ngModelChange)="updateTableResult()"
+			placeholder="Cherchez votre bateau!"
+		/>
+	</div>
+	<div class="boats" *ngIf="(boats$ | async)?.boats">
+		<app-table *ngIf="boats.length" [boats]="filteredBoats"></app-table>
+	</div>
+	<a [routerLink]="['/add-boat']">Ajouter nouveau bateau</a>
+</div>

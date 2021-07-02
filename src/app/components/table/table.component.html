@@ -1,0 +1,33 @@
+<table *ngIf="boats.length">
+	<thead>
+		<th>Type</th>
+		<th>Longeur</th>
+		<th>Largeur</th>
+		<th>Tirant d'eau</th>
+		<th>Equipage</th>
+		<th>Annexe</th>
+		<th>Foil</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let boat of boats">
+			<td class="type" data-label="Type">{{ boat.type }}</td>
+			<td class="longeur" data-label="Longeur">{{ boat.longeur }}</td>
+			<td class="largeur" data-label="Largeur">{{ boat.largeur }}</td>
+			<td class="tirant-eau" data-label="Tirant d'eau">
+				{{ boat.tirant_eau }}
+			</td>
+			<td class="equipage" data-label="Equipage">
+				{{ boat.equipage ? "Oui" : "Non" }}
+			</td>
+			<td class="annexe" data-label="Annexe">
+				{{ boat.annexe ? "Oui" : "Non" }}
+			</td>
+			<td class="foil" data-label="Foil">
+				<ng-container *ngIf="boat.type === 'Voilier'">
+					{{ boat.foil ? "Oui" : "Non" }}
+				</ng-container>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<span class="no-result" *ngIf="boats.length === 0">Pas trouvé le bateau</span>

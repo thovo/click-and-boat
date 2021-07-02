@@ -1,0 +1,104 @@
+<div class="add-boat">
+	<h2>Ajouter un nouveau bateau</h2>
+	<form [formGroup]="addForm">
+		<ng-container *ngIf="currentStep === 0">
+			<div class="type">
+				<input
+					type="radio"
+					id="Voilier"
+					name="type"
+					value="Voilier"
+					formControlName="type"
+				/>
+				<label for="Voilier">Voilier</label>
+				<input
+					type="radio"
+					id="Catamaran"
+					name="type"
+					value="Catamaran"
+					formControlName="type"
+				/>
+				<label for="Catamaran">Catamaran</label>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="currentStep === 1">
+			<div class="longeur flex-column">
+				<label for="longeur">Longeur</label>
+				<input
+					type="number"
+					name="longeur"
+					formControlName="longeur"
+					placeholder="Saisir le longeur"
+				/>
+			</div>
+			<div class="largeur flex-column">
+				<label for="largeur">Largeur</label>
+				<input
+					type="number"
+					name="largeur"
+					formControlName="largeur"
+					placeholder="Saisir le largeur"
+				/>
+			</div>
+			<div class="tirant_eau flex-column">
+				<label for="tirant_eau">Tirant d'eau</label>
+				<input
+					type="number"
+					name="tirant_eau"
+					formControlName="tirant_eau"
+					placeholder="Saisir le tirant d'eau"
+				/>
+			</div>
+			<div class="equipage">
+				<input type="checkbox" name="equipage" formControlName="equipage" />
+				<label for="equipage">Equipage</label>
+			</div>
+			<div class="annexe">
+				<input type="checkbox" name="annexe" formControlName="annexe" />
+				<label for="annexe">Annexe</label>
+			</div>
+			<div class="foil" *ngIf="addForm.value.type === 'Voilier'">
+				<input type="checkbox" name="foil" formControlName="foil" />
+				<label for="foil">Foil</label>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="currentStep === 2">
+			<div class="summary">
+				<h3>Nouveau bateau</h3>
+				<span>Type: </span>
+				<p>{{ addForm.value.type }}</p>
+				<span>Longeur: </span>
+				<p>{{ addForm.value.longeur }}</p>
+				<span>Largeur: </span>
+				<p>{{ addForm.value.largeur }}</p>
+				<span>Tirant d'eau: </span>
+				<p>{{ addForm.value.tirant_eau }}</p>
+				<span>Equipage: </span>
+				<p>{{ addForm.value.equipage ? "Oui" : "Non" }}</p>
+				<span>Annexe: </span>
+				<p>{{ addForm.value.annexe ? "Oui" : "Non" }}</p>
+				<ng-container *ngIf="addForm.value.type === 'Voilier'">
+					<span>Foil: </span>
+					<p>{{ addForm.value.foil ? "Oui" : "Non" }}</p>
+				</ng-container>
+			</div>
+		</ng-container>
+
+		<div class="actions">
+			<button *ngIf="currentStep > 0" (click)="previousStep()" class="previous">
+				Précedent
+			</button>
+			<button *ngIf="currentStep < 2" (click)="nextStep()" class="next">
+				Suivant
+			</button>
+			<button
+				class="submit"
+				type="submit"
+				(click)="addNewBoat()"
+				*ngIf="currentStep === 2"
+			>
+				Ajouter
+			</button>
+		</div>
+	</form>
+</div>
