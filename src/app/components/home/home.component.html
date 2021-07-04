@@ -5,6 +5,7 @@
 			[(ngModel)]="searchText"
 			(ngModelChange)="updateTableResult()"
 			placeholder="Cherchez votre bateau!"
+			class="search-box__input"
 		/>
 	</div>
 	<div class="boats" *ngIf="(boats$ | async)?.boats">
